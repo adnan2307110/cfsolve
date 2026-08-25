@@ -39,44 +39,35 @@ void solve()
     cin >> b;
     sort(all(a));
     sort(all(b));
-    vi c = a;
-    bool flag1 = true;
-    bool flag2 = true;
-    for (int i = 0; i < m; i++)
-    {
-        int l = lower_bound(a.begin(), a.end(), b[i]) - a.begin() - 1;
-        int r = upper_bound(a.begin(), a.end(), b[i]) - a.begin();
-        if (l == -1 || r == a.size())
-        {
-            flag1 = false;
-            break;
-        }
-
-        a.erase(a.begin() + r);
-        a.erase(a.begin() + l);
-    }
-    reverse(all(b));
-    for (int i = 0; i < m; i++)
-    {
-        int l = lower_bound(c.begin(), c.end(), b[i]) - c.begin() - 1;
-        int r = upper_bound(c.begin(), c.end(), b[i]) - c.begin();
-        if (l == -1 || r == c.size())
-        {
-            flag2 = false;
-            break;
-        }
-        c.erase(c.begin() + r);
-        c.erase(c.begin() + l);
-    }
-
-    if (flag1 || flag2)
-    {
-        cout << "YES" << endl;
-    }
-    else
+    if (n < 2 * m)
     {
         cout << "NO" << endl;
+        return;
     }
+    for (int i = 0; i < m; i++)
+    {
+        if (b[i] < a[i])
+        {
+            cout << "NO" << endl;
+            return;
+        }
+    }
+    int j = m;
+    for (int i = 0; i < m; i++)
+    {
+        while (j < n && b[i] > a[j])
+        {
+            j++;
+        }
+
+        if (j == n)
+        {
+            cout << "NO" << endl;
+            return;
+        }
+        j++;
+    }
+    cout << "YES" << endl;
 }
 
 int32_t main()
