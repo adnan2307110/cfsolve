@@ -1,0 +1,4 @@
+id,name,price,stock,category,sold
+2 Knitted Scarf 270.00 19 Fashion 1
+1 Handmade Vase 500.00 8 HomeDecor 2
+3 Acrylic Painting 1200.00 5 Art 0
